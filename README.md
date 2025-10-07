@@ -1,4 +1,4 @@
-# ⛰️ LegacyCraft Installer ⛰️
+# LegacyCraft Installer
 
 A simple application that automatically installs the required Fabric version and mods to enhance the gameplay experience on the LegacyCraft Minecraft server.
 
@@ -19,6 +19,17 @@ A simple application that automatically installs the required Fabric version and
 5.  Once finished, open your Minecraft Launcher.
 6.  Select the new **"LegacyCraft"** profile and click Play!
 
+## 📚 Credits & Links
+
+This installer bundles the following amazing projects. Please support their official pages!
+
+* **[FabricMC](https://fabricmc.net/)** - The lightweight, experimental modding toolchain for Minecraft.
+* **[Fabric API](https://modrinth.com/mod/fabric-api)** - The core library required for most Fabric mods to function.
+* **[Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat)** - Adds proximity-based voice chat to the game.
+* **[Iris Shaders](https://modrinth.com/mod/iris)** - Enables shader support for Sodium.
+* **[Just Enough Book](https://modrinth.com/mod/justenoughbook)** - A simple in-game recipe book.
+* **[Sodium](https://modrinth.com/mod/sodium)** - A powerful rendering engine replacement for improved performance.
+
 ## 🛠️ For Developers (Building from Source)
 
 This project is built with Python and Tkinter for the GUI.
@@ -36,7 +47,7 @@ This project is built with Python and Tkinter for the GUI.
     ```
 
 3.  **Install dependencies:**
-    *(Make sure to create a `requirements.txt` file first by running `pip freeze > requirements.txt`)*
+    *(Create a `requirements.txt` file first by running `pip freeze > requirements.txt`)*
     ```bash
     pip install -r requirements.txt
     ```
@@ -45,4 +56,3 @@ This project is built with Python and Tkinter for the GUI.
     ```bash
     pyinstaller --onefile --noconsole --icon="icon.ico" LCInstallation.py
     ```
-

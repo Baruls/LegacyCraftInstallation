@@ -8,6 +8,7 @@ import tkinter as tk
 from tkinter import ttk
 import json
 from datetime import datetime
+import base64
 
 # Fungsi pop-up (tidak berubah)
 def show_question(title, text):
@@ -45,33 +46,45 @@ def create_launcher_profile(status_label, root_window):
         
         PROFILE_NAME = "LegacyCraft"
         VERSION_ID = "fabric-1.21.8"
-        PROFILE_ID = "legacycraft-profile-autogen" # ID unik untuk profil kita
+        PROFILE_ID = "legacycraft-profile-autogen"
         
         minecraft_folder = os.path.join(os.getenv('APPDATA'), '.minecraft')
         profiles_path = os.path.join(minecraft_folder, 'launcher_profiles.json')
 
-        # Membuat data profil baru
+        # --- Bagian Baru untuk Ikon dari URL ---
+        icon_string = "Furnace" # Default jika download logo gagal
+        # URL langsung ke file gambar mentah di GitHub
+        logo_url = "https://raw.githubusercontent.com/Baruls/LegacyCraftInstallation/main/logo.png" 
+        
+        try:
+            # Unduh gambar dari URL
+            response = requests.get(logo_url)
+            response.raise_for_status() # Cek jika link error
+            
+            # Ubah data gambar yang diunduh menjadi teks Base64
+            b64_string = base64.b64encode(response.content).decode('utf-8')
+            icon_string = f"data:image/png;base64,{b64_string}"
+        except Exception as e:
+            print(f"Failed to download custom icon, using default. Error: {e}")
+        # --- Akhir dari Bagian Baru ---
+
         new_profile = {
             "name": PROFILE_NAME,
             "type": "custom",
             "created": datetime.now().isoformat(),
             "lastUsed": datetime.now().isoformat(),
             "lastVersionId": VERSION_ID,
-            "icon": "Furnace" # Ikon yang terlihat seperti furnace
+            "icon": icon_string # Menggunakan ikon dari URL atau default
         }
         
-        # Baca file launcher_profiles.json yang ada
         if os.path.exists(profiles_path):
             with open(profiles_path, 'r') as f:
                 profiles_data = json.load(f)
         else:
-            # Jika file tidak ada, buat struktur dasarnya
             profiles_data = {"profiles": {}}
 
-        # Tambahkan atau perbarui profil kita
         profiles_data["profiles"][PROFILE_ID] = new_profile
         
-        # Tulis kembali data yang sudah diperbarui ke file
         with open(profiles_path, 'w') as f:
             json.dump(profiles_data, f, indent=4)
             

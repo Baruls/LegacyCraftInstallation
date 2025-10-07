@@ -1,4 +1,4 @@
-# LegacyCraft Installer
+# ⛰️ LegacyCraft Installer ⛰️
 
 A simple application that automatically installs the required Fabric version and mods to enhance the gameplay experience on the LegacyCraft Minecraft server.
 
@@ -45,3 +45,4 @@ This project is built with Python and Tkinter for the GUI.
     ```bash
     pyinstaller --onefile --noconsole --icon="icon.ico" LCInstallation.py
     ```
+
